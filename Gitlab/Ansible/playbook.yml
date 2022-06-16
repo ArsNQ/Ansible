@@ -1,0 +1,32 @@
+# InstallDocker Role
+- hosts: Gitlab
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - InstallDocker
+
+# InstallGitlab Role
+- hosts: Gitlab
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - InstallGitlabDocker
+
+# InstallGitlabRunner Role
+- hosts: Gitlab
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - InstallGitlabRunner

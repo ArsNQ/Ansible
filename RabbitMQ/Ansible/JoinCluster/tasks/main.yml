@@ -1,0 +1,12 @@
+---
+# tasks file for JoinCluster
+- name: Join cluster by specifying existing member.
+  shell:
+    cmd: |
+          sudo rabbitmqctl stop_app
+          sudo rabbitmqctl join_cluster rabbit@RabbitMQ-Master
+          sudo rabbitmqctl start_app
+
+- name: Enable management plugin.
+  shell:
+    cmd: sudo rabbitmqctl cluster_status

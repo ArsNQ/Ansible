@@ -1,0 +1,2 @@
+[Gitlab]
+test ansible_host=20.83.25.143 ansible_user=cloud-user

@@ -1,0 +1,12 @@
+---
+# tasks file for SetAdmin
+- name: Define admin user with password password.
+  shell:
+    cmd: |
+          sudo rabbitmqctl add_user admin password
+          sudo rabbitmqctl set_user_tags admin administrator
+          sudo rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
+
+- name: Enable management plugin.
+  shell:
+    cmd: sudo rabbitmqctl delete_user guest

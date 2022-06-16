@@ -1,0 +1,19 @@
+### Informations à remplacer
+#### Dans le fichier hosts
+Indiquez dans un premier temps le nom de la VM, puis indiquez son adresse ip, et terminez avec le nom de l'utilisateur qui va se connecter à distance au serveur.
+```bash
+[Gitlab]
+<nomVM> ansible_host=<ip> ansible_user=<nomUtilisateur>
+```
+
+#### Après le déploiement
+Une fois le déploiement effectué, il faut exécuter la commande suivante directement sur le serveur. Elle permet de réinitialiser le mot de passe de base (root - 5iveL!fe : qui ne fonctionne pas, d'ou l'intéret de cette manipulation).
+```bash
+docker exec -it gitlab gitlab-rake "gitlab:password:reset[root]"
+```
+Un output va apparaitre (lentement ou non en fonction des ressources de la VM), et il n'y a plus qu'à rentrer le password du compte ROOT.
+
+### GitlabRunner 
+#### Qu'est-ce que le gitlab runner ? 
+Le runner Gitlab-CI est un petit logiciel qui va être connecté aux serveurs de Gitlab et qui va se mettre en écoute de demande de tâche de compilation / test / packaging que vos projets ont besoin de réaliser. L'avantage est double : Pas de limite en nombre de compilation.
+

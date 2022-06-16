@@ -1,0 +1,13 @@
+---
+# tasks file for SetHosts
+- name: Ajout d'IP dans le fichier /etc/hosts
+  blockinfile:
+    path: /etc/hosts
+    block: |
+                  {{ item.ip }} {{ item.name }}
+    marker: '# {mark} de mes modifications : {{ item.name }}'
+    marker_begin: 'DEBUT'
+    marker_end: 'FIN'
+  loop:
+    - { name: RabbitMQ-Master, ip: 10.0.0.4 }
+    - { name: RabbitMQ-Node01, ip: 10.0.0.5 }

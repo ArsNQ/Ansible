@@ -1,0 +1,43 @@
+# Docker role
+- hosts: "masters, workers"
+  remote_user: user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - installDocker
+
+# Kubernetes role
+- hosts: "masters, workers"
+  remote_user: user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - installKubernetes
+
+# master role
+- hosts: masters
+  remote_user: user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - setMaster
+
+# worker role
+- hosts: workers
+  remote_user: user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - setWorkers

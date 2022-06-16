@@ -1,0 +1,30 @@
+### Informations à remplacer
+#### Dans le fichier hosts
+Indiquez dans un premier temps le nom de la VM, puis indiquez son adresse ip, et terminez avec le nom de l'utilisateur qui va se connecter à distance au serveur.
+```bash
+[Master]
+<nomVM> ansible_host=<ip> ansible_user=<nomUtilisateur>
+
+[Nodes]
+<nomVM> ansible_host=<ip> ansible_user=<nomUtilisateur>
+<nomVM> ansible_host=<ip> ansible_user=<nomUtilisateur>
+<nomVM> ansible_host=<ip> ansible_user=<nomUtilisateur>
+<nomVM> ansible_host=<ip> ansible_user=<nomUtilisateur>
+```
+#### Dans le fichier SetHosts/tasks/main.yml
+Indiquez le même nom de VM, et l'ip de votre choix (réseau privé ou public), ne pas oublier d'ouvrir les ports adéquats.
+```bash
+  loop:
+    - { name: <nomVM>, ip: <ip> }
+    - { name: <nomVM>, ip: <ip> }
+```
+
+#### La suite
+Une fois toute ces informations corrigées. Il faut copier sa clés ssh sur les serveurs cibles, afin de faciliter l'accès à Ansible. Pour ça, placez vous dans votre dossier .ssh, et éxécutez la commande suivante :
+```bash
+ssh-copy-id -i id_rsa.pub <user>@<ip>
+```
+Une fois la manipulation effectuée sur tous les environnements. Placez vous dans le dossier ansible et exécutez la commande suivante :
+```bash
+ansible-playbook -i hosts playbook.yml
+```

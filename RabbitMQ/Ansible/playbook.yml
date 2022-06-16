@@ -1,0 +1,54 @@
+# SetHosts Role
+- hosts: Master, Nodes
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - SetHosts
+
+# InstallRabbitMQ role
+- hosts: Master, Nodes
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - InstallRabbitMQ
+
+# SetAdmin role
+- hosts: Master
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - SetAdmin
+
+# JoinCluster role
+- hosts: Nodes
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - JoinCluster
+
+# Output role
+- hosts: Master
+  remote_user: cloud-user
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - Output

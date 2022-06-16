@@ -1,0 +1,7 @@
+[Master]
+#example: RabbitMQ-Master ansible_host=20.64.120.178 ansible_user=cloud-user
+<nomVM> ansible_host=<ip> ansible_user=<nomUtilisateur>
+
+[Nodes]
+#example: RabbitMQ-Node01 ansible_host=20.64.123.22 ansible_user=cloud-user
+<nomVM> ansible_host=<ip> ansible_user=<nomUtilisateur>
