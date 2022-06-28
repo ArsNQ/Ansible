@@ -1,6 +1,6 @@
 # Docker role
-- hosts: "masters, workers"
-  remote_user: user
+- hosts: "k8sMasters, k8sWorkers"
+  remote_user: admin
   become: yes
   become_method: sudo
   become_user: root
@@ -10,8 +10,8 @@
     - installDocker
 
 # Kubernetes role
-- hosts: "masters, workers"
-  remote_user: user
+- hosts: "k8sMasters, k8sWorkers"
+  remote_user: admin
   become: yes
   become_method: sudo
   become_user: root
@@ -21,8 +21,8 @@
     - installKubernetes
 
 # master role
-- hosts: masters
-  remote_user: user
+- hosts: k8sMasters
+  remote_user: admin
   become: yes
   become_method: sudo
   become_user: root
@@ -32,12 +32,33 @@
     - setMaster
 
 # worker role
-- hosts: workers
-  remote_user: user
+- hosts: k8sMasters
+  remote_user: admin
   become: yes
   become_method: sudo
   become_user: root
   gather_facts: yes
   connection: ssh
-  roles:
-    - setWorkers
+  tasks:
+   - name: Create token to join cluster
+     shell: kubeadm token create --print-join-command
+     register: join_command_raw
+
+   - name: Set join command as fact
+     set_fact:
+       join_command: "{{ join_command_raw.stdout_lines[0] }}"
+
+
+- hosts: k8sWorkers
+  remote_user: admin
+  become: yes
+  become_method: sudo
+  become_user: root
+  gather_facts: yes
+  connection: ssh
+  tasks:
+    - name: Join the cluster. Use log to prevent joining twice
+      shell: "{{ hostvars['kubernetes'].join_command }} >> node_join.log"
+      args:
+        chdir: $HOME
+        creates: node

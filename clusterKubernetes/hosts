@@ -1,6 +1,13 @@
-[masters]
-control ansible_host=192.168.64.8 ansible_user=root
+[all]
+kubernetes
+kubernetes-node-01
+kubernetes-node-02
+kubernetes-node-03
 
-[workers]
-worker01 ansible_host=192.168.64.9 ansible_user=root
-# worker02 ansible_host=192.168.64.4 ansible_user=root
+[k8sMasters]
+kubernetes ansible_user=admin ansible_host=ec2-54-86-154-17.compute-1.amazonaws.com
+
+[k8sWorkers]
+kubernetes-node-01 ansible_user=admin ansible_host=ec2-54-196-148-110.compute-1.amazonaws.com
+kubernetes-node-02 ansible_user=admin ansible_host=ec2-18-234-232-22.compute-1.amazonaws.com
+kubernetes-node-03 ansible_user=admin ansible_host=ec2-18-232-173-84.compute-1.amazonaws.com
