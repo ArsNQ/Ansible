@@ -1,5 +1,8 @@
 #!/bin/bash
-cat /Users/ArsN/.ssh/id_rsa.pub | ssh -i /Users/ArsN/.ssh/pem-key/lab-test.pem admin@ec2-54-86-154-17.compute-1.amazonaws.com "cat - >> ~/.ssh/authorized_keys"
-cat /Users/ArsN/.ssh/id_rsa.pub | ssh -i /Users/ArsN/.ssh/pem-key/lab-test.pem admin@ec2-54-196-148-110.compute-1.amazonaws.com "cat - >> ~/.ssh/authorized_keys"
-cat /Users/ArsN/.ssh/id_rsa.pub | ssh -i /Users/ArsN/.ssh/pem-key/lab-test.pem admin@ec2-18-234-232-22.compute-1.amazonaws.com "cat - >> ~/.ssh/authorized_keys"
-cat /Users/ArsN/.ssh/id_rsa.pub | ssh -i /Users/ArsN/.ssh/pem-key/lab-test.pem admin@ec2-18-232-173-84.compute-1.amazonaws.com "cat - >> ~/.ssh/authorized_keys"
+# Your Master server here
+cat /<path>/<to>/<rsa>/id_rsa.pub | ssh -i /<path>/<to>/<key>/xxxxxxxxx.pem <user>@<ip_address> "cat - >> ~/.ssh/authorized_keys"
+
+# Your Nodes server here
+cat /<path>/<to>/<rsa>/id_rsa.pub | ssh -i /<path>/<to>/<key>/xxxxxxxxx.pem <user>@<ip_address> "cat - >> ~/.ssh/authorized_keys"
+cat /<path>/<to>/<rsa>/id_rsa.pub | ssh -i /<path>/<to>/<key>/xxxxxxxxx.pem <user>@<ip_address> "cat - >> ~/.ssh/authorized_keys"
+cat /<path>/<to>/<rsa>/id_rsa.pub | ssh -i /<path>/<to>/<key>/xxxxxxxxx.pem <user>@<ip_address> "cat - >> ~/.ssh/authorized_keys"

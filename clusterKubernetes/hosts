@@ -5,9 +5,9 @@ kubernetes-node-02
 kubernetes-node-03
 
 [k8sMasters]
-kubernetes ansible_user=admin ansible_host=ec2-54-86-154-17.compute-1.amazonaws.com
+kubernetes ansible_user=<user> ansible_host=<ip_address>
 
 [k8sWorkers]
-kubernetes-node-01 ansible_user=admin ansible_host=ec2-54-196-148-110.compute-1.amazonaws.com
-kubernetes-node-02 ansible_user=admin ansible_host=ec2-18-234-232-22.compute-1.amazonaws.com
-kubernetes-node-03 ansible_user=admin ansible_host=ec2-18-232-173-84.compute-1.amazonaws.com
+kubernetes-node-01 ansible_user=<user> ansible_host=<ip_address>
+kubernetes-node-02 ansible_user=<user> ansible_host=<ip_address>
+kubernetes-node-03 ansible_user=<user> ansible_host=<ip_address>
